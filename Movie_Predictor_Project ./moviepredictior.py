@@ -36,7 +36,7 @@ def clean2(movie):
     while q<m:
         trip2[q]=trip[q]
         q+=1
-    #print(trip2)
+    
     
     movie2=[0]*m
    
@@ -65,7 +65,7 @@ def clean(movie,gender):
 
     trip2=[0]*m
     trip2g=[0]*m
-    #print(m)
+   
     q=0
     while q<m:
         trip2[q]=trip[q]
@@ -86,12 +86,11 @@ def clean(movie,gender):
         g+=1
     return movie2,gender2  
 
-#print(clean(shrek,genderID))
+
 
 shrekd2=clean(shrek,genderID)[0]
 genderd2=clean(shrek,genderID)[1]
-#print(shrekd2)
-#print(genderd2)
+
 
 len2=len(shrekd2)
 maleshrek=[0]*len2
@@ -116,10 +115,7 @@ while x<240:
     femaleshrek2[x]=femaleshrek[x]
     x+=1
 
-#print(np.corrcoef(maleshrek,femaleshrek))
 
-#print(np.mean(femaleshrek))
-#print(np.mean(maleshrek))
 
 
 wolf=data['The Wolf of Wall Street (2013)']
@@ -149,8 +145,7 @@ while x<268:
     wolftogether2[x]=wolftogether[x]  
     x+=1
     
-#print(np.mean(wolftogether))
-#print(np.mean(wolfalone))
+
 
 lion=data['The Lion King (1994)']
 child=data['Are you an only child? (1: Yes; 0: No; -1: Did not respond)']
@@ -179,8 +174,7 @@ while x<150:
     only2[x]=only[x]
     sib2[x]=sib[x]
     x+=1
-#print(np.mean(only))
-#print(np.mean(sib))
+
 
 print(stats.ttest_ind(maleshrek2, femaleshrek2))
 print(stats.ttest_ind(wolfalone2, wolftogether2))
@@ -193,14 +187,12 @@ print(data.shape)
 sensation=pd.read_csv(r"C:\Users\jagol\Downloads\sensation.csv")
 moviexp=pd.read_csv(r"C:\Users\jagol\Downloads\moviexp.csv")
 
-#sensation=zscore(sensation)
 
-#print(sensation.head())
 sensation=sensation.dropna()
 
 from sklearn.decomposition import PCA
 zscoredData=zscore(sensation)
-#print(zscoredData)
+
 pca = PCA().fit(zscoredData)
 eigVals = pca.explained_variance_
 loadings = pca.components_
@@ -274,7 +266,7 @@ personality=pd.read_csv(r"C:\Users\jagol\Downloads\personality.csv")
 personality=personality.dropna()
 
 zscoredData=zscore(personality)
-#print(zscoredData)
+
 pca = PCA().fit(zscoredData)
 eigVals = pca.explained_variance_
 loadings = pca.components_
@@ -309,13 +301,9 @@ personalitypca.insert(7,personality.columns[21] ,personality.iloc[:,21], True)
 
 print(personalitypca.head(5))
 m=data.dropna()
-#print(data.shape)
-movie=movie.dropna()
-#print(movie.shape)
 
-#print(clean2(wolf))
-#print(np.mean(clean2(wolf)))
-#moviexp.reshape(-1,1)
+movie=movie.dropna()
+
 
 from sklearn import linear_model
 def builder(movie,cols):
@@ -336,7 +324,7 @@ def builder(movie,cols):
     regr = linear_model.LinearRegression()
     regr.fit(x, y)
 
-#predict the CO2 emission of a car where the weight is 2300kg, and the volume is 1300cm3:
+
     predicted = regr.predict([[5, 2]])
     """
     # importing train_test_split from sklearn
@@ -361,8 +349,7 @@ def builder(movie,cols):
     print('root_mean_squared error of is==',np.sqrt(mean_squared_error(y_test,y_prediction)))
     """
     return predicted
-    
-#print(builder(wolf,moviexp))
+
 
 
 
@@ -414,10 +401,9 @@ print(personalitypca.columns[7])
 
 #Q3
 
-#movie=movie.dropna(axis='rows')
 movie=pd.read_csv(r"C:\Users\jagol\Downloads\movies.csv")
 movie=movie.fillna(0)
-"""
+
 def len1(col):
     count=0
     x=0
@@ -425,7 +411,7 @@ def len1(col):
         if col[x]>0:
             count+=1
         x+=1
-    #print(count)
+ 
     return count
 
 
@@ -449,126 +435,12 @@ def cleanall (data):
     groupbig=[0]*200
     groupsmall=[0]*200
     for column in data:
-        #data[column]=(clean2(data.iloc[0:,column]))
-        
-        #print(len(clean2(data.iloc[:,x])))
+     
         lens[x]=len1(data.iloc[:,x])
-        #print(np.median(lens))
-        #print(np.min(lens))
+     
         if lens[x]>188.5:
             groupbig[m]=x
-            #print(groupbig[m])
-            m+=1
-        if lens[x]<188.5:
-            groupsmall[q]=x
-            q+=1
-        x+=1
-        
-
-    y=0
-    currentbig=[0]*200
-    currentsmall=[0]*200
-    fullbig=[0]*48
-    fullsmall=[0]*48
-    dfbig=pd.DataFrame()
-    dfsmall=pd.DataFrame()
-    dffull=pd.DataFrame()
-        
-    while y<200:
-        currentbig=data.iloc[:,groupbig[y]]
-        cleanbig=clean48(currentbig)
-        currentsmall=data.iloc[:,groupsmall[y]]
-        cleansmall=clean48(currentsmall)
-            
-        t=0
-        while t<48:
-            fullbig[t]=cleanbig[t]
-            fullsmall[t]=cleansmall[t]
-            t+=1
-        dfbig.insert(y, y, fullbig, True)
-        dfsmall.insert(y,y,fullsmall,True)
-        
-        
-        y+=1    
-   
     
-           
-        
-            
-       
-    return dfbig,dfsmall
-
-
-cleanbiggy=cleanall(movie)[0]
-cleansmally=cleanall(movie)[1]
-#cleanfull=cleanall(movie)[2]
-
-bigmean=[0]*200
-smallmean=[0]*200
-
-s=0
-q=0
-while s<200:
-    select=cleanbiggy.iloc[:,s]
-    select2=cleansmally.iloc[:,s]
-    #select3=cleanfull.iloc[:,s]
-    
-    bigmean[s]=np.mean(select)
-    smallmean[s]=np.mean(select2)
-   # fullmean[s]=np.mean(select3)
-    q+=1
-    s+=1
-#print(np.mean(bigmean))
-#print(np.mean((smallmean)))
-#print(np.mean(fullmean))
-#print(stats.ttest_ind((bigmean), (smallmean)))
-print(stats.ttest_rel(bigmean, smallmean))
-print(np.mean(bigmean),np.mean(smallmean))
-"""
-#Q3 v2
-movie=pd.read_csv(r"C:\Users\jagol\Downloads\movies.csv")
-movie=movie.fillna(0)
-
-def len1(col):
-    count=0
-    x=0
-    while x<len(col):
-        if col[x]>0:
-            count+=1
-        x+=1
-    #print(count)
-    return count
-
-
-def clean48(col):
-    x=0
-    p=0
-    yuh=[0]*48
-    while x<(len(col)):
-        if p==47:
-            return yuh
-        if col[x]>0:
-            yuh[p]=col[x]
-            p+=1
-        x+=1
-print(movie.shape)
-def cleanall (data):
-    x=0
-    m=0
-    q=0
-    lens=[0]*400
-    groupbig=[0]*200
-    groupsmall=[0]*200
-    for column in data:
-        #data[column]=(clean2(data.iloc[0:,column]))
-        
-        #print(len(clean2(data.iloc[:,x])))
-        lens[x]=len1(data.iloc[:,x])
-        #print(np.median(lens))
-        #print(np.min(lens))
-        if lens[x]>188.5:
-            groupbig[m]=x
-            #print(groupbig[m])
             m+=1
         if lens[x]<188.5:
             groupsmall[q]=x
@@ -649,8 +521,7 @@ while x<990:
 print((len(maleshrek1),(len(femaleshrek1))))    
     
 femaleshrek2=femaleshrek[0:241]
-#np.sort(maleshrek1)
-#np.sort(femaleshrek2)
+
 y=femaleshrek2
 x=np.arange(241)
 plt.bar(x, y,.4, color ="blue")
@@ -659,7 +530,7 @@ x=np.arange(241)+241
 y=maleshrek1 
 plt.bar(x, y,.4, color ="red")
 plt.axhline(y=np.mean(maleshrek1),color='r',linestyle='-')
-#lines=plt.plot(x,y)
+
 plt.legend(['female','male'])
 # To show the plot
 plt.show()
@@ -697,7 +568,7 @@ x=np.arange(151)+151
 y=only
 plt.bar(x, y,1, color ="red")
 plt.axhline(y=np.mean(only),color='r',linestyle='-')
-#lines=plt.plot(x,y)
+
 plt.legend(['siblings','only child'])
 # To show the plot
 plt.show()
@@ -735,7 +606,7 @@ x=np.arange(270)+270
 y=together 
 plt.bar(x, y,.4, color ="red")
 plt.axhline(y=np.mean(together),color='r',linestyle='-')
-#lines=plt.plot(x,y)
+
 plt.legend(['alone','together'])
 # To show the plot
 plt.show()
