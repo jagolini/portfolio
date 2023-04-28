@@ -198,7 +198,7 @@ void l1_cache_access(uint32_t address, uint32_t write_data,
   //bits of the address and L1_SET_INDEX_SHIFT to shift the
   //bits the appropriate amount.
 
-  //CODE HERE
+
   uint32_t l1_set_index= (address & L1_SET_INDEX_MASK)>>L1_SET_INDEX_SHIFT;
 
 
@@ -207,7 +207,7 @@ void l1_cache_access(uint32_t address, uint32_t write_data,
   //bits of the address and L1_ADDRESS_TAG_SHIFT to shift the
   //bits the appropriate amount.
 
-  //CODE HERE
+ 
     uint32_t l1_address_tag= (address & L1_ADDRESS_TAG_MASK)>>L1_ADDRESS_TAG_SHIFT;
 
   //Extract from the address the word offset within the cache line.
@@ -215,7 +215,7 @@ void l1_cache_access(uint32_t address, uint32_t write_data,
   //the address and WORD_OFFSET_SHIFT to shift the bits the
   //appropriate amount.
 
-  //CODE HERE
+  
     uint32_t l1_word_offset= (address & WORD_OFFSET_MASK)>>WORD_OFFSET_SHIFT;
 
 
@@ -239,7 +239,7 @@ void l1_cache_access(uint32_t address, uint32_t write_data,
   //written to the appropriate word of the entry's cache line data and
   //the entry's dirty bit should be set.
 
-  //CODE HERE
+
 
   for(int i=0; i<L1_LINES_PER_SET;i++){
     if((l1_cache[l1_set_index].lines[i].v_r_d_tag&L1_VBIT_MASK)&&((l1_cache[l1_set_index].lines[i].v_r_d_tag&L1_ENTRY_TAG_MASK)==(l1_address_tag))){//error?
@@ -318,14 +318,14 @@ void l1_insert_line(uint32_t address, uint32_t write_data[],
   //Extract from the address the index of the set in the cache.
   //see l1_cache_access above
 
-  //CODE HERE
+  
   uint32_t l1_set_index= (address & L1_SET_INDEX_MASK)>>L1_SET_INDEX_SHIFT;
 
 
   //Extract from the address the tag bits.
   //see l1_cache_access above.
 
-  //CODE HERE
+ 
     uint32_t l1_address_tag= (address & L1_ADDRESS_TAG_MASK)>>L1_ADDRESS_TAG_SHIFT;
 
 
@@ -370,7 +370,7 @@ void l1_insert_line(uint32_t address, uint32_t write_data[],
   // to be written back. There is nothing further to do, the procedure
   // can return
 
-  //CODE HERE
+
 
   //  Otherwise, we remember the first entry we encounter which has r=0 and d=0,
   //  the first entry that has r=0 and d=1, etc.
@@ -381,7 +381,7 @@ void l1_insert_line(uint32_t address, uint32_t write_data[],
   //on the above list to evict.
  uint32_t choose;
 
-  //CODE HERE
+  
   for(int i=0; i<L1_LINES_PER_SET; i++){
     if(!(l1_cache[l1_set_index].lines[i].v_r_d_tag&L1_VBIT_MASK)){
       for(uint32_t  word_offset=0;word_offset<WORDS_PER_CACHE_LINE;word_offset++) {
@@ -457,7 +457,7 @@ evicted_writeback_data[word_offset]=l1_cache[l1_set_index].lines[choose].cache_l
   //should be set to 1 to indicate that the write-back is needed. Otherwise,
   //the low bit of the status byte should be set to 0.
 
-  //CODE HERE
+
 
 
 
@@ -467,7 +467,7 @@ evicted_writeback_data[word_offset]=l1_cache[l1_set_index].lines[choose].cache_l
   //entry, and write the tag bits of the address into the tag of
   //the entry.
 
-  //CODE HERE
+ 
   for(uint32_t word_offset=0;word_offset<WORDS_PER_CACHE_LINE;word_offset++) {
 l1_cache[l1_set_index].lines[choose].cache_line[word_offset] = write_data[word_offset];
   }
