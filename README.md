@@ -2,9 +2,9 @@
 A sample of some of my work
 
 
-The React Native example is a screen recording of an app conponent I worked on
+The React Native example is a screen recording of an app component I worked on
 
-The Deforestation Project highlights use of big data tools and data visualization
+The Deforestation Project highlights use of big data tools, report writting ability, and data visualization
 
 The Movie Prediction Project highlights data engineering and machine learning capabilities
 
