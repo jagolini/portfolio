@@ -9,3 +9,5 @@ The Deforestation Project highlights use of big data tools, report writting abil
 The Movie Prediction Project highlights data engineering and machine learning capabilities
 
 The Cache Project Highlights knowledge of computer systems and c programming
+
+The SQL example demonstrates SQL proficiency
