@@ -1,2 +1,2 @@
 
-This folder contains and example of SQL proficiency 
+This folder contains an example of SQL proficiency 
